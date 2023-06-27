@@ -16,7 +16,7 @@ const twitterClient = client.readWrite;
 
 const tweet = async () => {
   try {
-    await twitterClient.v2.tweet("This is a new tweet after half an hour!");
+    await twitterClient.v2.tweet("new post on twitter");
   } catch (e) {
     console.log(e);
   }
