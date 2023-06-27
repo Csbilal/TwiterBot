@@ -16,7 +16,7 @@ const twitterClient = client.readWrite;
 
 const tweet = async () => {
   try {
-    await twitterClient.v2.tweet("another post");
+    await twitterClient.v2.tweet("this is new tweeet afatr half hoaur");
   } catch (e) {
     console.log(e);
   }
@@ -35,7 +35,7 @@ const tweet = async () => {
 
 // getUser();
 
-const cronTweet = new CronJob("10 1 * * *", async () => {
+const cronTweet = new CronJob("0,30 * * * *", async () => {
   tweet();
 });
 
