@@ -16,9 +16,7 @@ const twitterClient = client.readWrite;
 
 const tweet = async () => {
   try {
-    const response = await twitterClient.v2.tweet(
-      "a new tweet on twiiter from the server"
-    );
+    const response = await twitterClient.v2.tweet("this post from the twitter");
     return response; // Return the successful response
   } catch (e) {
     console.error(e);
@@ -39,14 +37,8 @@ cronTweet.start();
 
 const port = process.env.PORT || 8080;
 
-app.get("/", async (req, res) => {
-  try {
-    const response = await tweet();
-    res.send(response); // Send the successful response back to the server
-  } catch (error) {
-    console.error(error);
-    res.status(500).send(error.message); // Send the error message back to the server
-  }
+app.get("/", (req, res) => {
+  res.send("Home Page");
 });
 
 // Start the server
