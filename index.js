@@ -14,15 +14,19 @@ const client = new TwitterApi({
 
 const twitterClient = client.readWrite;
 
-const tweet = async () => {
+const tweet = async (res) => {
   try {
-    await twitterClient.v2.tweet("new post on twitter");
+    const response = await twitterClient.v2.tweet(
+      "is  this is a new tweet on Twitter from the server "
+    );
+    res.send(response); // Send the successful response back to the server
   } catch (e) {
-    console.log(e);
+    console.error(e);
+    res.status(500).send(e.message); // Send the error message back to the server
   }
 };
 
-const cronTweet = new CronJob("0 */2 * * * *", async () => {
+const cronTweet = new CronJob("0,30 * * * *", async () => {
   tweet();
 });
 
@@ -36,5 +40,5 @@ app.get("/", (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-  console.log("Server is running on port 3000");
+  console.log(`Server is running on port ${port}`);
 });
